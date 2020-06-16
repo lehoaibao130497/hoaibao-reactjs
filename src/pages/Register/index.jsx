@@ -31,7 +31,7 @@ function Register() {
                 <div className="basic-login">
                   <h3 className="text-center mb-60">Signup From Here</h3>
                   <form action="#">
-                    <label htmlFor="name">Username <span>**</span></label>
+                    <label htmlFor="name">FullName <span>**</span></label>
                     <input id="name" type="text" placeholder="Enter Username or Email address..." />
                     <label htmlFor="email-id">Email Address <span>**</span></label>
                     <input id="email-id" type="text" placeholder="Enter Username or Email address..." />

@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <Main />
   </React.StrictMode>,
   document.getElementById('root')
 );

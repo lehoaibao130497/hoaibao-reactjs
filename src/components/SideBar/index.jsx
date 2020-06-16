@@ -9,7 +9,7 @@ function SideBar(props) {
 
   const onSearch = (e) => {
     e.preventDefault()
-    console.log(keyword)
+    props.onSearch(keyword)
   }
 
   return (
