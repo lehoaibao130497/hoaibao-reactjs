@@ -9,38 +9,30 @@ import { useBgMode } from "../../hooks/useBgMode";
 import axios from 'axios'
 import store from "../../store";
 import { connect } from 'react-redux'
+import { getProductsAction } from './Main.action'
 
-function Main() {
+function Main(props) {
   const [products, setProducts] = useState([])
   const [productsInCart, setProductsInCart] = useState([])
   const [value, setValue] = useBgMode()
+  const { getProducts } = props;
 
 
-  store.subscribe(() => {
-  const stateFromStore = store.getState()
-    if(stateFromStore.productsReducer.products) {
-      setProducts(stateFromStore.productsReducer.products)
-    }
-  })
+  // store.subscribe(() => {
+  //   const stateFromStore = store.getState()
+  //   if(stateFromStore.productsReducer.products) {
+  //     setProducts(stateFromStore.productsReducer.products)
+  //   }
+  // })
 
   useEffect(() => {
-    store.dispatch({
-      type: "GET_PRODUCT_REQUEST"
-    })
-
-    async function getProducts() {
-      const result = await axios({
-        method: 'GET',
-        url: 'https://min-shop.herokuapp.com/rest/product'
-      })
-      // setProducts(result.data.data)
-      store.dispatch({
-        type: "GET_PRODUCT_SUCCESS",
-        data: result.data.data
-      })
+    if(props.productsListA) {
+      setProducts(props.productsListA)
     }
+  }, [props.productsListA])
 
-    getProducts()
+  useEffect(() => {
+    getProductsAction()
   }, [])
   
   const onSelectProduct = (propsOfProductItem) => {
@@ -84,6 +76,10 @@ function Main() {
 
   console.log("products", products)
 
+  if(props.loading) {
+    return 'loading...'
+  }
+
   return (
     <Layout productsInCart={productsInCart}>
       <main style={{ backgroundColor: value }}>
@@ -112,19 +108,15 @@ function Main() {
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     products: state.productReducer.products
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    productsListA: state.productsReducer.products,
+    loading: state.productsReducer.loading
+  }
+}
 
 // const mapDispatchToProps = {
-
+//   getProducts: getProductsAction
 // }
 
-// export default connect({
-//   mapStateToProps,
-//   mapDispatchToProps
-// }, Main);
-
-export default Main
+export default connect(mapStateToProps)(Main)

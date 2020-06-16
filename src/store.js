@@ -3,6 +3,7 @@ import productsReducer from './pages/Main/Main.reducer'
 import productDetailReducer from './pages/ProductDetail/ProductDetail.reducer'
 import loginReducer from './pages/Login/Login.reducer'
 import registerReducer from './pages/Register/Register.reducer'
+// import ReduxThunk from 'redux-thunk';
 
 const store = createStore(
   combineReducers({

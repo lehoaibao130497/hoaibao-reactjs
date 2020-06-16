@@ -25,9 +25,27 @@ export function productListFailureAction(error) {
 }
 
 
-export function getProductsAction() {
-  return async (dispatch) => {
-    dispatch(productListRequestAction())
+export async function getProductsAction() {
+  // return async (dispatch) => {
+  //   dispatch(productListRequestAction())
+
+  //   try {
+  //     const result = await axios({
+  //       method: 'GET',
+  //       url: 'https://min-shop.herokuapp.com/rest/product'
+  //     })
+    
+  //     dispatch(productListSuccessAction(result.data.data))
+
+  //   } catch(error) {
+  //     dispatch({
+  //       type: PRODUCT_LIST_FAILURE,
+  //       error: error
+  //     })
+  //   }
+  // }
+  
+  store.dispatch(productListRequestAction())
 
     try {
       const result = await axios({
@@ -35,13 +53,12 @@ export function getProductsAction() {
         url: 'https://min-shop.herokuapp.com/rest/product'
       })
     
-      dispatch(productListSuccessAction(result.data.data))
+      store.dispatch(productListSuccessAction(result.data.data))
 
     } catch(error) {
-      dispatch({
+      store.dispatch({
         type: PRODUCT_LIST_FAILURE,
         error: error
       })
     }
-  }
 }
