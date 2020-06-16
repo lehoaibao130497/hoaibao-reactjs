@@ -12,6 +12,7 @@ function Login() {
 
   const [errorMessage, setErrorMessage] = useState("")
   const history = useHistory()
+  console.log(history, "history")
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -37,7 +38,12 @@ function Login() {
   
       console.log(result.data);
       localStorage.setItem("token", result.data.accessToken)
-      history.push('/')
+      if(history.location.state.from.pathname) {
+        history.push(history.location.state.from.pathname)
+      } else {
+        history.push('/')
+      }
+      
     } catch (error) {
       setErrorMessage(error.response.data.message)
     }

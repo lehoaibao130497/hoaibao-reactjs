@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { ThemeContextCustom } from './hooks/useBgMode'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Loading from './components/Loading'
+import ProtectedRoute from './components/ProtectedRoute';
 
 const Main = React.lazy(() => import('./pages/Main'));
 const Register = React.lazy(() => import('./pages/Register'));
@@ -29,9 +30,13 @@ ReactDOM.render(
             <Register />
           </Route>
 
-          <Route exact path="/product-detail/:id">
+          <ProtectedRoute exact path="/product-detail/:id">
             <ProductDetail />
-          </Route>
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/me">
+            <div>My name is Tai</div>
+          </ProtectedRoute>
 
           {/* <Route 
             exact
