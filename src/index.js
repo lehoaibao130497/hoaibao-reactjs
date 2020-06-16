@@ -14,66 +14,6 @@ const Login = React.lazy(() => import('./pages/Login'))
 const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
 
 
-console.log("1", store.getState())
-
-store.dispatch({
-  type: "GUI_TIEN",
-  data: 500000
-})
-
-console.log("2", store.getState())
-
-store.dispatch({
-  type: "GUI_TIEN",
-  data: 100000
-})
-
-console.log("3", store.getState())
-
-store.dispatch({
-  type: "RUT_TIEN",
-  data: 1000000
-})
-
-console.log("4", store.getState())
-
-store.dispatch({
-  type: "DONG_TAI_KHOAN"
-})
-
-async function getProduct() {
-  try {
-    store.dispatch({
-      type: "GET_PRODUCT_REQUEST"
-    })
-
-    const product = []
-    store.dispatch({
-      type: "GET_PRODUCT_SUCCESS",
-      data: product
-    })
-    
-  } catch(error) {
-    store.dispatch({
-      type: "GET_PRODUCT_ERROR",
-      error: error
-    })
-  }
-  // 1. dang goi api -> loading....
-  // 2. da goi thanh cong -> product
-  // 3. Bi loi
-
-  
-}
-
-function DongTaiKhoanCreator() {
-  return {
-    type: "DONG_TAI_KHOAN"
-  }
-}
-
-store.dispatch(DongTaiKhoanCreator())
-
 // store.subscribe(() => {
 //   const state = store.getState()
 //   console.log(state)

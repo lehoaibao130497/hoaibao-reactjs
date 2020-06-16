@@ -7,19 +7,36 @@ import SideBar from "../../components/SideBar";
 import dataProduct from '../../product.json'
 import { useBgMode } from "../../hooks/useBgMode";
 import axios from 'axios'
+import store from "../../store";
 
 function Main() {
   const [products, setProducts] = useState([])
   const [productsInCart, setProductsInCart] = useState([])
   const [value, setValue] = useBgMode()
 
+
+  store.subscribe(() => {
+  const stateFromStore = store.getState()
+    if(stateFromStore.products) {
+      setProducts(stateFromStore.products)
+    }
+  })
+
   useEffect(() => {
+    store.dispatch({
+      type: "GET_PRODUCT_REQUEST"
+    })
+
     async function getProducts() {
       const result = await axios({
         method: 'GET',
         url: 'https://min-shop.herokuapp.com/rest/product'
       })
-      setProducts(result.data.data)
+      // setProducts(result.data.data)
+      store.dispatch({
+        type: "GET_PRODUCT_SUCCESS",
+        data: result.data.data
+      })
     }
 
     getProducts()

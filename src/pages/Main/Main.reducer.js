@@ -1,5 +1,3 @@
-import * as actionTypes from './Main.action.js'
-
 const initState = {
   products: [],
   loading: false,
@@ -8,25 +6,19 @@ const initState = {
 
 function ProductReducer(state = initState, action) {
   switch(action.type) {
-    case actionTypes.PRODUCT_LIST_REQUEST:
+    case 'GET_PRODUCT_REQUEST':
       return {
         ...state,
         loading: true
       }
 
-    case actionTypes.PRODUCT_LIST_SUCCESS:
+    case 'GET_PRODUCT_SUCCESS':
       return {
         ...state,
         loading: false,
         products: action.data
       }
-    
-    case actionTypes.PRODUCT_LIST_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.error
-      }
+
     default:
       return state
   }
