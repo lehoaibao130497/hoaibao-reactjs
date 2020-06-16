@@ -1,8 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/Layout'
+import axios from 'axios'
 
 
 function Register() {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    fullName: "",
+    password: ""
+  })
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    console.log(userInfo, "userInfo")
+    register(userInfo)
+  }
+
+  const onChange = (e) => {
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const register = async (data) => {
+    try {
+      const result = await axios({
+        method: "POST",
+        url: "https://min-shop.herokuapp.com/rest/user/signUp",
+        data
+      });
+  
+      console.log(result.data);
+      localStorage.setItem("token", result.data.accessToken)
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
   return (
     <Layout productsInCart={[]}>
       <main>
@@ -30,13 +64,13 @@ function Register() {
               <div className="col-lg-8 offset-lg-2">
                 <div className="basic-login">
                   <h3 className="text-center mb-60">Signup From Here</h3>
-                  <form action="#">
+                  <form onSubmit={onSubmit}>
                     <label htmlFor="name">FullName <span>**</span></label>
-                    <input id="name" type="text" placeholder="Enter Username or Email address..." />
+                    <input name="fullName" id="name" type="text" placeholder="Enter your Full Name..." />
                     <label htmlFor="email-id">Email Address <span>**</span></label>
-                    <input id="email-id" type="text" placeholder="Enter Username or Email address..." />
+                    <input name="email" id="email-id" type="text" placeholder="Enter Email address..." />
                     <label htmlFor="pass">Password <span>**</span></label>
-                    <input id="pass" type="password" placeholder="Enter password..." />
+                    <input name="password" id="pass" type="password" placeholder="Enter password..." />
                     <div className="mt-10" />
                     <button className="btn theme-btn-2 w-100">Register Now</button>
                     <div className="or-divide"><span>or</span></div>
