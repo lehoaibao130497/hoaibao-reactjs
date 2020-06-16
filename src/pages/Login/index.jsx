@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import Layout from '../../components/Layout'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
+import { connect } from 'react-redux'
+import { loginAction } from './Login.action'
 
-
-function Login() {
+function Login(props) {
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: ""
   })
 
-  const [errorMessage, setErrorMessage] = useState("")
   const history = useHistory()
   console.log(history, "history")
 
@@ -28,25 +28,7 @@ function Login() {
   }
 
   const login = async (data) => {
-    setErrorMessage('')
-    try {
-      const result = await axios({
-        method: "POST",
-        url: "https://min-shop.herokuapp.com/rest/user/signIn",
-        data
-      });
-  
-      console.log(result.data);
-      localStorage.setItem("token", result.data.accessToken)
-      if(history.location.state.from.pathname) {
-        history.push(history.location.state.from.pathname)
-      } else {
-        history.push('/')
-      }
-      
-    } catch (error) {
-      setErrorMessage(error.response.data.message)
-    }
+    props.login(data, history)
   }
 
   return (
@@ -76,7 +58,7 @@ function Login() {
               <div className="col-lg-8 offset-lg-2">
                 <div className="basic-login">
                   <h3 className="text-center mb-60">Login From Here</h3>
-                  <p className="text-danger">{errorMessage}</p>
+                  <p className="text-danger">{props.error}</p>
                   <form onSubmit={onSubmit}>
                     <label htmlFor="name">Email Address <span>**</span></label>
                     <input name="email" id="name" type="text" placeholder="Enter Username or Email address..." onChange={onChange}/>
@@ -106,4 +88,15 @@ function Login() {
   )
 }
 
-export default Login
+
+const mapStateToProps = (state) => {
+  return {
+    error: state.loginReducer.error
+  }
+}
+
+const mapDispatchToProps = {
+  login: loginAction
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
