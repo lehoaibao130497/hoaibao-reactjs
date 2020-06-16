@@ -6,11 +6,42 @@ import { ThemeContextCustom } from './hooks/useBgMode'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Loading from './components/Loading'
 import ProtectedRoute from './components/ProtectedRoute';
+import store from './store';
 
 const Main = React.lazy(() => import('./pages/Main'));
 const Register = React.lazy(() => import('./pages/Register'));
 const Login = React.lazy(() => import('./pages/Login'))
 const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
+
+
+console.log("1", store.getState())
+
+store.dispatch({
+  type: "GUI_TIEN",
+  data: 500000
+})
+
+console.log("2", store.getState())
+
+store.dispatch({
+  type: "GUI_TIEN",
+  data: 100000
+})
+
+console.log("3", store.getState())
+
+store.dispatch({
+  type: "RUT_TIEN",
+  data: 1000000
+})
+
+console.log("4", store.getState())
+
+// store.subscribe(() => {
+//   const state = store.getState()
+//   console.log(state)
+// })
+
 
 ReactDOM.render(
   <React.StrictMode>
