@@ -1,7 +1,18 @@
 import React from "react";
 import Layout from "../../components/Layout";
+import { withRouter } from "react-router-dom";
+import productData from '../../product.json'
 
 function ProductDetail(props) {
+  console.log("ProductDetail Props", props)
+
+  console.log("props.match", props.match.params.id)
+  const product = productData.data.find(elm => elm.id == props.match.params.id)
+  console.log(product, "product")
+  if(!product) {
+    return <h1>404 ko tim thay san pham</h1>
+  }
+
   return (
     <Layout productsInCart={[]}>
       <main>
@@ -105,11 +116,11 @@ function ProductDetail(props) {
                   <a href="#">furniture</a>
                 </div>
                 <h2 className="pro-details-title mb-15">
-                  {props.name}
+                  {product.name}
                 </h2>
                 <div className="details-price mb-20">
-                  <span>$119.00</span>
-                  <span className="old-price">$246.00</span>
+                  <span>{product.priceMax}</span>
+                  <span className="old-price">${product.price}</span>
                 </div>
                 <div className="product-variant">
                   <div className="product-desc variant-item">
@@ -640,4 +651,4 @@ function ProductDetail(props) {
     );
 }
 
-export default ProductDetail;
+export default withRouter(ProductDetail);

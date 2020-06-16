@@ -8,7 +8,7 @@ import ProductDetail from './pages/ProductDetail';
 import * as serviceWorker from './serviceWorker';
 import { ThemeContextCustom } from './hooks/useBgMode'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import productData from './product.json'
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,12 +26,12 @@ ReactDOM.render(
           <Route exact path="/register">
             <Register />
           </Route>
-{/* 
+
           <Route exact path="/product-detail/:id">
             <ProductDetail />
-          </Route> */}
+          </Route>
 
-          <Route 
+          {/* <Route 
             exact
             path="/product-detail/:id"
             render={(props) => {
@@ -41,9 +41,9 @@ ReactDOM.render(
               if(!product) {
                 return <h1>404 ko tim thay san pham</h1>
               }
-              return <ProductDetail name={product.name} />
+              return <ProductDetail {...product} />
             }}
-          />
+          /> */}
 
 
           <Route path="*">
