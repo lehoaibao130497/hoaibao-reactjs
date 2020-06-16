@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Main.css";
 import Layout from "../../components/Layout";
 import Content from "../../components/Content";
@@ -6,12 +6,24 @@ import ProductItem from "../../components/ProductItem";
 import SideBar from "../../components/SideBar";
 import dataProduct from '../../product.json'
 import { useBgMode } from "../../hooks/useBgMode";
-
+import axios from 'axios'
 
 function Main() {
-  const [products, setProducts] = useState(dataProduct.data)
+  const [products, setProducts] = useState([])
   const [productsInCart, setProductsInCart] = useState([])
   const [value, setValue] = useBgMode()
+
+  useEffect(() => {
+    async function getProducts() {
+      const products = axios({
+        method: 'GET',
+        url: 'https://min-shop.herokuapp.com/rest/product'
+      })
+      setProducts(products)
+    }
+
+    getProducts()
+  }, [])
   
   const onSelectProduct = (propsOfProductItem) => {
     console.log(propsOfProductItem)

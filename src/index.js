@@ -37,6 +37,43 @@ store.dispatch({
 
 console.log("4", store.getState())
 
+store.dispatch({
+  type: "DONG_TAI_KHOAN"
+})
+
+async function getProduct() {
+  try {
+    store.dispatch({
+      type: "ADD_PRODUCT_REQUEST"
+    })
+
+    const product = []
+    store.dispatch({
+      type: "ADD_PRODUCT_SUCCESS",
+      data: product
+    })
+    
+  } catch(error) {
+    store.dispatch({
+      type: "ADD_PRODUCT_ERROR",
+      error: error
+    })
+  }
+  // 1. dang goi api -> loading....
+  // 2. da goi thanh cong -> product
+  // 3. Bi loi
+
+  
+}
+
+function DongTaiKhoanCreator() {
+  return {
+    type: "DONG_TAI_KHOAN"
+  }
+}
+
+store.dispatch(DongTaiKhoanCreator())
+
 // store.subscribe(() => {
 //   const state = store.getState()
 //   console.log(state)
