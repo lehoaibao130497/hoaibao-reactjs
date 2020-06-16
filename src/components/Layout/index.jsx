@@ -72,15 +72,8 @@ function Layout(props) {
         </div>
       </header>
     {/* Body */}
-    <main>
-      <section className="shop-area pt-150 pb-100">
-          <div className="container">
-            <div className="row">
-              {props.children}
-            </div>
-          </div>
-        </section>
-    </main>
+    {props.children}
+    
     <footer className="footer-area pl-100 pr-100">
         <div className="footer-area box-90 pt-100 pb-60" data-background="img/bg/footer.jpg" style={{backgroundImage: 'url("img/bg/footer.jpg")'}}>
           <div className="container">

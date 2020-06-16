@@ -1,6 +1,17 @@
-import React from "react";
+import React, {useState } from "react";
 
 function SideBar(props) {
+  const [keyword, setKeyword] = useState()
+
+  const onChangeKeyword = (e) => {
+    setKeyword(e.target.value)
+  }
+
+  const onSearch = (e) => {
+    e.preventDefault()
+    console.log(keyword)
+  }
+
   return (
     <>
       {/*SideBar */}
@@ -8,8 +19,8 @@ function SideBar(props) {
         <div className="sidebar-shop">
           <div className="shop-widget">
             <h3 className="shop-title">Search by</h3>
-            <form action="#" className="shop-search">
-              <input type="text" placeholder="Your keyword...." />
+            <form action="#" className="shop-search" onSubmit={onSearch}>
+              <input type="text" placeholder="Your keyword...." onChange={onChangeKeyword} />
               <button>
                 <i className="fa fa-search" />
               </button>

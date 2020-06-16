@@ -4,7 +4,7 @@ function Cart(props) {
   console.log(props.data);
 
   const totalPrice = props.data.reduce((prev, cur) => prev +  cur.price, 0)
-
+  
   return (
     <li className="d-shop-cart">
       <a href="#">
