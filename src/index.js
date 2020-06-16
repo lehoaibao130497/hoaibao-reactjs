@@ -8,6 +8,7 @@ import ProductDetail from './pages/ProductDetail';
 import * as serviceWorker from './serviceWorker';
 import { ThemeContextCustom } from './hooks/useBgMode'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import productData from './product.json'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,17 +19,32 @@ ReactDOM.render(
             <Main />
           </Route>
 
-          <Route exact path="/login">
+          <Route exact path="/(login|dang-nhap)">
             <Login />
           </Route>
 
           <Route exact path="/register">
             <Register />
           </Route>
-
-          <Route exact path="/product-detail">
+{/* 
+          <Route exact path="/product-detail/:id">
             <ProductDetail />
-          </Route>
+          </Route> */}
+
+          <Route 
+            exact
+            path="/product-detail/:id"
+            render={(props) => {
+              console.log("props.match", props.match.params.id)
+              const product = productData.data.find(elm => elm.id == props.match.params.id)
+              console.log(product, "product")
+              if(!product) {
+                return <h1>404 ko tim thay san pham</h1>
+              }
+              return <ProductDetail name={product.name} />
+            }}
+          />
+
 
           <Route path="*">
             <h1>404</h1>

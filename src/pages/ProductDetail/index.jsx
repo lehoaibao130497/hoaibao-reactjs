@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../../components/Layout";
 
-function ProductDetail() {
+function ProductDetail(props) {
   return (
     <Layout productsInCart={[]}>
       <main>
@@ -105,7 +105,7 @@ function ProductDetail() {
                   <a href="#">furniture</a>
                 </div>
                 <h2 className="pro-details-title mb-15">
-                  Limonda Women Winter Cloth
+                  {props.name}
                 </h2>
                 <div className="details-price mb-20">
                   <span>$119.00</span>
@@ -635,7 +635,7 @@ function ProductDetail() {
       </section>
       {/* product-area end */}
     </main>
-
+  
     </Layout>
     );
 }
