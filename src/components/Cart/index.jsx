@@ -2,6 +2,9 @@ import React from "react";
 
 function Cart(props) {
   console.log(props.data);
+
+  const totalPrice = props.data.reduce((prev, cur) => prev +  cur.price, 0)
+
   return (
     <li className="d-shop-cart">
       <a href="#">
@@ -40,7 +43,7 @@ function Cart(props) {
         <li>
           <div className="total-price">
             <span className="f-left">Total:</span>
-            <span className="f-right">$300.0</span>
+            <span className="f-right">{totalPrice}</span>
           </div>
         </li>
 

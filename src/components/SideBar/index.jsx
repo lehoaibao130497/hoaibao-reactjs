@@ -1,6 +1,6 @@
 import React from "react";
 
-function SideBar() {
+function SideBar(props) {
   return (
     <>
       {/*SideBar */}
@@ -27,10 +27,10 @@ function SideBar() {
             <h3 className="shop-title">SHOP BY</h3>
             <ul className="shop-link">
               <li>
-                <a href="#">Name: A-Z</a>
+                <a onClick={props.sortNameAZ}>Name: A-Z</a>
               </li>
               <li>
-                <a href="#">Name: Z-A</a>
+                <a onClick={props.sortNameZA}>Name: Z-A</a>
               </li>
               <li>
                 <a href="#">Price: High to Low</a>

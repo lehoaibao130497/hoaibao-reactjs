@@ -9,6 +9,7 @@ import dataProduct from './product.json'
 
 
 function App() {
+  const [products, setProducts] = useState(dataProduct.data)
   const [productsInCart, setProductsInCart] = useState([])
   
   const onSelectProduct = (propsOfProductItem) => {
@@ -20,12 +21,23 @@ function App() {
       productsInCart.push(propsOfProductItem)
     */
   }
+  const sortNameAZ =() => {
+    console.log("sortAZ")
+    const newProductSort = [...products].sort((a,b) => a.name.localeCompare(b.name))
+    setProducts(newProductSort)
+  }
+
+  const sortNameZA =() => {
+    console.log("sortAZ")
+    const newProductSort = [...products].sort((a,b) => b.name.localeCompare(a.name))
+    setProducts(newProductSort)
+  }
 
   return (
     <Layout productsInCart={productsInCart}>
       <Content>
         {
-          dataProduct.data.map(elm => {
+          products.map(elm => {
             return (
               <ProductItem 
               {...elm} imageURL={elm.image} 
@@ -35,7 +47,7 @@ function App() {
           })
         }
       </Content>
-      <SideBar />
+      <SideBar sortNameZA={sortNameZA} sortNameAZ={sortNameAZ}/>
     </Layout>
   );
 }

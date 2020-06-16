@@ -60,7 +60,7 @@ function Layout(props) {
                       <a className="search-btn nav-search search-trigger" href="#"><i className="fas fa-search" /></a>
                     </li>
                     <li className="login-btn"><a href="#"><i className="far fa-user" /></a></li>
-                    <Cart data={props.productsInCart}/>
+                    <Cart data={props.productsInCart} />
                   </ul>
                 </div>
               </div>
