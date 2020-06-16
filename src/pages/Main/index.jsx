@@ -15,11 +15,11 @@ function Main() {
 
   useEffect(() => {
     async function getProducts() {
-      const products = axios({
+      const result = await axios({
         method: 'GET',
         url: 'https://min-shop.herokuapp.com/rest/product'
       })
-      setProducts(products)
+      setProducts(result.data.data)
     }
 
     getProducts()
@@ -63,6 +63,8 @@ function Main() {
     }
 
   }
+
+  console.log("products", products)
 
   return (
     <Layout productsInCart={productsInCart}>

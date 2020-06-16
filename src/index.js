@@ -44,18 +44,18 @@ store.dispatch({
 async function getProduct() {
   try {
     store.dispatch({
-      type: "ADD_PRODUCT_REQUEST"
+      type: "GET_PRODUCT_REQUEST"
     })
 
     const product = []
     store.dispatch({
-      type: "ADD_PRODUCT_SUCCESS",
+      type: "GET_PRODUCT_SUCCESS",
       data: product
     })
     
   } catch(error) {
     store.dispatch({
-      type: "ADD_PRODUCT_ERROR",
+      type: "GET_PRODUCT_ERROR",
       error: error
     })
   }
