@@ -1,13 +1,15 @@
 import React from "react";
 import Layout from "../../components/Layout";
-import { withRouter } from "react-router-dom";
+import { withRouter, useParams } from "react-router-dom";
 import productData from '../../product.json'
 
 function ProductDetail(props) {
+  const params = useParams()
+  console.log(params)
   console.log("ProductDetail Props", props)
 
-  console.log("props.match", props.match.params.id)
-  const product = productData.data.find(elm => elm.id == props.match.params.id)
+  console.log("props.match", params.id)
+  const product = productData.data.find(elm => String(elm.id) === params.id)
   console.log(product, "product")
   if(!product) {
     return <h1>404 ko tim thay san pham</h1>
@@ -651,4 +653,4 @@ function ProductDetail(props) {
     );
 }
 
-export default withRouter(ProductDetail);
+export default ProductDetail;

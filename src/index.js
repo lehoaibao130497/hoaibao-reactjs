@@ -1,19 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Main from './pages/Main';
-import Register from './pages/Register'
-import Login from './pages/Login'
-import ProductDetail from './pages/ProductDetail';
 import * as serviceWorker from './serviceWorker';
 import { ThemeContextCustom } from './hooks/useBgMode'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Loading from './components/Loading'
 
+const Main = React.lazy(() => import('./pages/Main'));
+const Register = React.lazy(() => import('./pages/Register'));
+const Login = React.lazy(() => import('./pages/Login'))
+const ProductDetail = React.lazy(() => import('./pages/ProductDetail'));
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ThemeContextCustom>
+        <React.Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/">
             <Main />
@@ -51,7 +53,7 @@ ReactDOM.render(
           </Route>
 
         </Switch>
-        
+        </React.Suspense>
       </ThemeContextCustom>
     </Router>
   </React.StrictMode>,

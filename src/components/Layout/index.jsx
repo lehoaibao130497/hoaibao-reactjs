@@ -1,5 +1,6 @@
 import React from 'react'
 import Cart from '../Cart'
+import { Link } from 'react-router-dom'
 
 function Layout(props) {
   return (
@@ -59,7 +60,7 @@ function Layout(props) {
                     <li className="search-btn">
                       <a className="search-btn nav-search search-trigger" href="#"><i className="fas fa-search" /></a>
                     </li>
-                    <li className="login-btn"><a href="#"><i className="far fa-user" /></a></li>
+                    <li className="login-btn"><Link to="/login"><i className="far fa-user" /></Link></li>
                     <Cart data={props.productsInCart} />
                   </ul>
                 </div>
