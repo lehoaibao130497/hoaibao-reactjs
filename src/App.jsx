@@ -37,7 +37,9 @@ function App() {
   return (
     <Layout>
        <Content>
-        <ProductItem />
+       <ProductItem 
+         {...products[0]}
+        />
       </Content>
       <SideBar />
     </Layout>
