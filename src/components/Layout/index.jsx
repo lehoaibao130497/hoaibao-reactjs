@@ -155,7 +155,7 @@ function Layout(props) {
         </div>
       </header>
     {/* Body */}
-    {props.children}
+    <main>{props.children}</main>
     <footer className="footer-area pl-100 pr-100">
         <div className="footer-area box-90 pt-100 pb-60" data-background="img/bg/footer.jpg" style={{backgroundImage: 'url("img/bg/footer.jpg")'}}>
           <div className="container">
@@ -227,4 +227,4 @@ function Layout(props) {
     </>
   )
 }
-export default Layout 
+export default Layout
