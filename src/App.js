@@ -1,7 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
-import Layout from './components/Layout'
 import './App.css';
+import Layout from './components/Layout'
+import Content from './components/Content';
+import ProductItem from './components/ProductItem';
+import SideBar from './components/SideBar';
 
 const products = [
   {
@@ -27,47 +30,16 @@ const products = [
   }
 ]
 
-function Price(props) {
-  return (
-    <>
-      <span>{props.discountPrice}</span>
-      <strike>{props.price}</strike>
-    </>
-  )
-}
-function Title(props) {
-  return (
-    <>
-      <p>{props.type}</p>
-      <p>{props.name}</p>
-    </>
-  )
-}
-function Image(props) {
-  return (
-    <img src={props.imageURL} />
-  )
-}
-function ProductItem(props) {
-  return (
-    <div className="product-item">
-      <Image imageURL={props.data.imageURL}/>
-      <Title type={props.data.type} name={props.data.name} />
-      <Price price={props.data.price} discountPrice={props.data.discountPrice} />
-    </div>
-  )
-}
 function App() {
   return (
     <Layout>
-      <div className="products">
-      {
-        products.map(elm => {
-          return <ProductItem data={elm} />
-        })
-      }
-    </div>
+      <Content>
+        <ProductItem />
+      </Content>
+      <SideBar />
     </Layout>
   );
 }
+
+
 export default App;

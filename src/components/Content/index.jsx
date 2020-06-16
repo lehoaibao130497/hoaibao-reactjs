@@ -1,8 +1,7 @@
 import React from 'react'
-import ProductItem from '../ProductItem'
 
 
-function Content() {
+function Content(props) {
   return (
     <div className="col-xl-9 col-lg-8">
       {/* tab filter */}
@@ -17,7 +16,9 @@ function Content() {
       <div className="tab-content" id="myTabContent">
         <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
           <div className="row">
-            <ProductItem />
+            {
+              props.children
+            }
           </div>
         </div>
       </div>
