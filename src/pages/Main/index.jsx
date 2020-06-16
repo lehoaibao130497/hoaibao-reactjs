@@ -32,7 +32,7 @@ function Main(props) {
   }, [props.productsListA])
 
   useEffect(() => {
-    getProductsAction()
+    props.getProducts()
   }, [])
   
   const onSelectProduct = (propsOfProductItem) => {
@@ -115,8 +115,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = {
-//   getProducts: getProductsAction
-// }
+const mapDispatchToProps = {
+  getProducts: getProductsAction
+}
 
-export default connect(mapStateToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(Main)
