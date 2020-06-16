@@ -4,11 +4,15 @@ import './index.css';
 import Main from './pages/Main';
 import Register from './pages/Register'
 import Login from './pages/Login'
+import ProductDetail from './pages/ProductDetail';
 import * as serviceWorker from './serviceWorker';
+import { ThemeContextCustom } from './hooks/useBgMode'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Main />
+    <ThemeContextCustom>
+      <ProductDetail />
+    </ThemeContextCustom>
   </React.StrictMode>,
   document.getElementById('root')
 );
