@@ -10,7 +10,7 @@ import dataProduct from '../../product.json'
 function Main() {
   const [products, setProducts] = useState(dataProduct.data)
   const [productsInCart, setProductsInCart] = useState([])
-
+  
   const onSelectProduct = (propsOfProductItem) => {
     console.log(propsOfProductItem)
     setProductsInCart([...productsInCart, propsOfProductItem])
@@ -55,7 +55,7 @@ function Main() {
           </div>
         </section>
     </main>
-
+      
     </Layout>
   );
 }
