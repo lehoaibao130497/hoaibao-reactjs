@@ -8,6 +8,7 @@ import dataProduct from '../../product.json'
 import { useBgMode } from "../../hooks/useBgMode";
 import axios from 'axios'
 import store from "../../store";
+import { connect } from 'react-redux'
 
 function Main() {
   const [products, setProducts] = useState([])
@@ -17,8 +18,8 @@ function Main() {
 
   store.subscribe(() => {
   const stateFromStore = store.getState()
-    if(stateFromStore.products) {
-      setProducts(stateFromStore.products)
+    if(stateFromStore.productsReducer.products) {
+      setProducts(stateFromStore.productsReducer.products)
     }
   })
 
@@ -111,4 +112,19 @@ function Main() {
   );
 }
 
-export default Main;
+// const mapStateToProps = (state) => {
+//   return {
+//     products: state.productReducer.products
+//   }
+// }
+
+// const mapDispatchToProps = {
+
+// }
+
+// export default connect({
+//   mapStateToProps,
+//   mapDispatchToProps
+// }, Main);
+
+export default Main
