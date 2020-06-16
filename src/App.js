@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import Layout from './components/Layout'
 import './App.css';
 
 const products = [
@@ -58,13 +59,15 @@ function ProductItem(props) {
 }
 function App() {
   return (
-    <div className="products">
+    <Layout>
+      <div className="products">
       {
         products.map(elm => {
           return <ProductItem data={elm} />
         })
       }
     </div>
+    </Layout>
   );
 }
 export default App;
